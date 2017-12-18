@@ -51,33 +51,42 @@ export default {
        }
     },
     methods:{
-     // 点击提交按钮, 调用登陆接口----实现登录操作，进行跳转
-    //  跳转之前先校验密码和用户名----不正确的话给出对应的提示，正确就提交
-            submitForm(formName){
-                // this.$http.post(this.$api.login,this.user)
-                // .then(rsp=>(alert.rsp.data.message.realname));
-                // 先校验表单再提交
+            login(){
+                 //方法一：登陆成功后, 通过params把用户名传递给新页面
+                 //  this.$router.push({name:"a",params:{uname:rsp.data.message.uname}});
+                 //  方法二：登录成功后将数据进行本地存储，再实现跳转
+                 // 解构两个属性值---根据status判断是否登录成功，成功=1，失败=0
+                 // console.log(rsp.data);
+                this.$http.post(this.$api.login,this.user)
+                .then(rsp=>{
+                    let {status,message}=rsp.data;
+                    if(status==0){
+                        localStorage.setItem('user',JSON.stringify(message));
+                        this.$router.push('/');
+                        }else{
+                            alert('哥们你确实逗我呢');
+                        }
+                     })  
+                  },
+            // 点击提交按钮, 调用登陆接口----实现登录操作，进行跳转
+            //  跳转之前先校验密码和用户名----不正确的话给出对应的提示，正确就提交
+            submitForm(formName){// 先校验表单再提交
                 this.$refs[formName].validate((result)=>{
                     if(result){
-                        this.$http.post(this.$api.login,this.user)
-                        .then(rsp=>{
-                             // 登陆成功后, 通过params把用户名传递给新页面
-                             this.$router.push({name:"a",params:{uname:rsp.data.message.uname}});
-
-                            
-                        });   
+                        this.login();
                     }else{
                         alert('你4不4傻啊');
                     }
-                })
-
+                });
             },
             resetForm(formName){
                 // 这里拿到form组件对象, 调用其重置方法重置表单
                 this.$refs[formName].resetFields();
             }
-    }
-};
+    } 
+}
+
+
 </script>
 
 <style scoped lang="less">

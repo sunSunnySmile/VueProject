@@ -2,7 +2,8 @@
     <div>
        <el-dropdown @command="handleCommand">
            <span class="el-dropdown-link">
-               你好，{{username}}
+               <!-- 你好，{{username}} -->
+               你好，{{user.uname}}
                 <i class="el-icon-caret-bottom el-icon--right"></i>
                 功能
            </span>
@@ -19,15 +20,25 @@
     export default {
         data(){
             return {
-                // 通过路由参数拿到用户名
-                username:this.$route.params.uname
+                // 方法一：通过路由参数拿到用户名
+                // username:this.$route.params.uname
+                // 方法二：通过localstorage拿到参数，如果没有设置一个空对象
+                user:JSON.parse(localStorage.getItem('user'))||{}
+
             }
         },
         methods:{
-            // logout时,调用接口注销登陆, 成功后跳转到登陆页
                 logout(){
-                   this.$http.get(this.$api.logout)
-                   .then(rsp=>this.$router.push('login'))
+                    //方法一： logout时,调用接口注销登陆, 成功后跳转到登陆页
+                        // this.$http.get(this.$api.logout)
+                        // .then(rsp=>this.$router.push('login'))
+                    //  方法二：调用接口注销登录，成功后清除localstorage存储的登录信息，然后再跳转到登录页
+                            this.$http.get(this.$api.logout)
+                            .then((rsp)=>{
+                                 localStorage.removeItem('user');
+                                 this.$router.push('login');
+                            })
+                           
                 },
             // 点击菜单时的处理函数
             handleCommand(command){
