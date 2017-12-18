@@ -1,13 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 html,
 body,
 main {
-    height: 100%;
+  height: 100%;
 }
-
-
+/* 设置超链接标签的默认样式 */
+.router-link-active {
+  text-decoration: none;
+  color: #fff;
+}
 /*# sourceMappingURL=./index.css.map */

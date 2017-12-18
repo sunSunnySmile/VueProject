@@ -17,6 +17,7 @@ export default {
 
             ]
         },
+        { name: "a", path: "/", component: AdminComponent },
         { name: "l", path: "/login", component: LoginComponent }
     ],
 };

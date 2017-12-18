@@ -37,7 +37,7 @@ export default {
   .el-header {
     background-color: #B3C0D1;
     color: #333;
-    text-align: center;
+    text-align: right;
     line-height: 60px;
   }
     //   左侧高度100%

@@ -61,7 +61,9 @@ export default {
                     if(result){
                         this.$http.post(this.$api.login,this.user)
                         .then(rsp=>{
-                            alert(rsp.data.message.realname);
+                             // 登陆成功后, 通过params把用户名传递给新页面
+                             this.$router.push({name:"a",params:{uname:rsp.data.message.uname}});
+
                             
                         });   
                     }else{
