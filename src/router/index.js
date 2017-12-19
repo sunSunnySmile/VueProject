@@ -6,19 +6,11 @@
 import LoginComponent from '../component/login/Login.vue';
 import AdminComponent from '../component/admin/admin.vue';
 
-// 引入商品难关组件
-import goodsContentAddComponent from '../component/admin/goods/content/goodsContentAdd.vue';
-import goodsContentEditComponent from '../component/admin/goods/content/goodsContentEdit.vue';
-import goodsContentListComponent from '../component/admin/goods/content/goodsContentList.vue';
 
-// 配置商品相关组件---是admin的子路由
-let adminChildren = [
-    { name: "gca", path: "goods/content/add", component: goodsContentAddComponent },
-    { name: "gce", path: "goods/content/edit", component: goodsContentEditComponent },
-    { name: "gcl", path: "goods/content/list", component: goodsContentListComponent }
 
-];
-
+// 导入商品路由配置文件
+import goodsRouterConfig from './goods.js';
+let adminChildren = [...goodsRouterConfig];
 
 
 export default {

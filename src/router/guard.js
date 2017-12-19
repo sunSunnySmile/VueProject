@@ -6,10 +6,6 @@ import apiConfig from '../js/api_config.js';
 
 // 2.默认向外导出一个守卫函数，并根据去到的路径不同做出不同的处理
 export default function(to, from, next) {
-    console.log(to);
-    console.log(from);
-
-
     // 1 调用接口判断用户的登陆状态
     // 2 再通过to对象的name属性得知用户去往的页面
     // 2.1 如果去往登陆页面
