@@ -28,11 +28,11 @@
             <el-table-column type="selection">
             </el-table-column>
             <!-- 普通列: label用于设置表头, prop用于指定该列展示的字段名称 -->
-            <el-table-column label="日期">
+            <el-table-column label="标题">
                 <template slot-scope="scope">1111</template>
             </el-table-column>
              <!-- 普通列: label用于设置表头, 里面的template可以用于设定任意html结构 -->
-            <el-table-column prop="name" label="姓名">
+            <el-table-column prop="" label="所属类别">
                 <!-- 在temoplate里面, 需要通过scope.row拿到每一行数据 -->
             </el-table-column>
         </el-table>

@@ -20,9 +20,14 @@ import RouterConfig from './router';
 import axios from './js/axios_config.js'
 import api from './js/api_config.js';
 
+
 Vue.prototype.$http = axios;
 Vue.prototype.$api = api;
 
+// 4.导入路由守护----routerGuard
+import routerGuard from './router/guard.js';
+const Vuerouter = new VueRouter(RouterConfig);
+Vuerouter.beforeEach(routerGuard);
 
 
 
@@ -34,5 +39,5 @@ new Vue({
     render(createElement) {
         return createElement(App);
     },
-    router: new VueRouter(RouterConfig),
+    router: Vuerouter
 });
